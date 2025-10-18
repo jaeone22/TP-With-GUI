@@ -1,5 +1,7 @@
 # TP With GUI
 
+### [Download on Modrinth](https://modrinth.com/mod/tp-with-gui)
+
 Instead of always having to manually enter the tp command, use the **TP menu by pressing the `K` button** on your keyboard.
 
 Supports both teleporting to the opponent and teleporting the opponent to you.
