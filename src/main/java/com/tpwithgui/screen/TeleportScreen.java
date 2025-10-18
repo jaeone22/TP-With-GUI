@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.Click;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
@@ -36,14 +35,16 @@ public class TeleportScreen extends Screen {
 		playerButtons.clear();
 		scrollOffset = 0;
 
-		// 플레이어 버튼 생성
+		// 플레이어 버튼 생성 및 추가
 		for (var player : client.world.getPlayers()) {
 			if (!player.getUuid().equals(client.player.getUuid())) {
 				String name = player.getName().getString();
 				ButtonWidget button = ButtonWidget
 						.builder(Text.literal(name), btn -> client.setScreen(new TeleportMenuScreen(name, this)))
 						.dimensions(this.width / 2 - 100, 0, 200, BUTTON_HEIGHT).build();
-				playerButtons.add(new PlayerButton(button));
+				// 버튼을 위젯으로 추가하여 자동 클릭 처리되도록 함
+				this.addDrawableChild(button);
+				playerButtons.add(new PlayerButton(button, name));
 			}
 		}
 
@@ -59,31 +60,26 @@ public class TeleportScreen extends Screen {
 
 	@Override
 	public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-		super.render(context, mouseX, mouseY, delta);
-
-		// 제목
-		context.drawCenteredTextWithShadow(this.textRenderer, this.title, this.width / 2, 15, 0xFFFFFF);
-
-		// 스크롤 영역 클리핑
+		// 버튼 위치 및 가시성 업데이트
 		int listHeight = this.height - LIST_TOP - LIST_BOTTOM_OFFSET;
-
-		context.enableScissor(0, LIST_TOP, this.width, LIST_TOP + listHeight);
-
-		// 버튼 렌더링
 		int y = LIST_TOP - scrollOffset;
+
 		for (PlayerButton playerButton : playerButtons) {
 			ButtonWidget button = playerButton.button;
 			button.setY(y);
 
-			// 보이는 영역에 있는 버튼만 렌더링
-			if (y + BUTTON_HEIGHT > LIST_TOP && y < LIST_TOP + listHeight) {
-				button.render(context, mouseX, mouseY, delta);
-			}
+			// 보이는 영역에 있는 버튼만 활성화
+			boolean isVisible = y + BUTTON_HEIGHT > LIST_TOP && y < LIST_TOP + listHeight;
+			button.visible = isVisible;
+			button.active = isVisible;
 
 			y += BUTTON_HEIGHT + BUTTON_SPACING;
 		}
 
-		context.disableScissor();
+		super.render(context, mouseX, mouseY, delta);
+
+		// 제목
+		context.drawCenteredTextWithShadow(this.textRenderer, this.title, this.width / 2, 15, 0xFFFFFF);
 
 		// 스크롤바 렌더링
 		if (maxScroll > 0) {
@@ -118,40 +114,13 @@ public class TeleportScreen extends Screen {
 	}
 
 	@Override
-	public boolean mouseClicked(Click click, boolean clicked) {
-		// 리스트 영역 내의 버튼 클릭 처리
-		double mouseX = click.x();
-		double mouseY = click.y();
-		int listHeight = this.height - LIST_TOP - LIST_BOTTOM_OFFSET;
-
-		if (clicked && mouseY >= LIST_TOP && mouseY < LIST_TOP + listHeight) {
-			int y = LIST_TOP - scrollOffset;
-			for (PlayerButton playerButton : playerButtons) {
-				ButtonWidget btn = playerButton.button;
-				btn.setY(y);
-
-				if (y + BUTTON_HEIGHT > LIST_TOP && y < LIST_TOP + listHeight) {
-					if (btn.isMouseOver(mouseX, mouseY)) {
-						btn.onPress(click);
-						return true;
-					}
-				}
-
-				y += BUTTON_HEIGHT + BUTTON_SPACING;
-			}
-		}
-		return super.mouseClicked(click, clicked);
-	}
-
-	@Override
 	public boolean shouldPause() {
 		return false;
 	}
 
 	private static class PlayerButton {
 		final ButtonWidget button;
-
-		PlayerButton(ButtonWidget button) {
+		PlayerButton(ButtonWidget button, String name) {
 			this.button = button;
 		}
 	}
