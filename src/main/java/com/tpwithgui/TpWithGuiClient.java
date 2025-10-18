@@ -20,7 +20,7 @@ public class TpWithGuiClient implements ClientModInitializer {
 
 	@Override
 	public void onInitializeClient() {
-		LOGGER.info("TP With GUI 초기화 중...");
+		LOGGER.info("Initializing TP With GUI...");
 
 		// 키바인드 등록 (기본값 K)
 		openGuiKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
@@ -58,6 +58,6 @@ public class TpWithGuiClient implements ClientModInitializer {
 			}
 		});
 
-		LOGGER.info("TP With GUI 초기화 완료");
+		LOGGER.info("TP With GUI initialized successfully");
 	}
 }

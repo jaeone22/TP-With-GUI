@@ -1,0 +1,9 @@
+{
+    "gui.tpwithgui.online_players": "Online Players",
+    "gui.tpwithgui.teleport_title": "Teleport: %s",
+    "gui.tpwithgui.teleport_to": "Teleport to %s",
+    "gui.tpwithgui.teleport_to_me": "Teleport %s to me",
+    "gui.tpwithgui.close": "Close",
+    "gui.tpwithgui.cancel": "Cancel",
+    "key.tpwithgui.open_gui": "TP With GUI: Open Teleport GUI"
+}

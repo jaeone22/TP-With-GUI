@@ -21,7 +21,7 @@ public class TeleportScreen extends Screen {
 	private static final int BUTTON_SPACING = 5;
 
 	public TeleportScreen() {
-		super(Text.literal("Online Players"));
+		super(Text.translatable("gui.tpwithgui.online_players"));
 	}
 
 	@Override
@@ -54,7 +54,7 @@ public class TeleportScreen extends Screen {
 		maxScroll = Math.max(0, totalContentHeight - listHeight);
 
 		// 닫기 버튼
-		this.addDrawableChild(ButtonWidget.builder(Text.literal("Close"), btn -> this.close())
+		this.addDrawableChild(ButtonWidget.builder(Text.translatable("gui.tpwithgui.close"), btn -> this.close())
 				.dimensions(this.width / 2 - 100, this.height - 40, 200, 20).build());
 	}
 
@@ -120,6 +120,7 @@ public class TeleportScreen extends Screen {
 
 	private static class PlayerButton {
 		final ButtonWidget button;
+
 		PlayerButton(ButtonWidget button, String name) {
 			this.button = button;
 		}

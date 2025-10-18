@@ -1,0 +1,9 @@
+{
+    "gui.tpwithgui.online_players": "접속 중인 플레이어",
+    "gui.tpwithgui.teleport_title": "텔레포트: %s",
+    "gui.tpwithgui.teleport_to": "%s에게 텔레포트",
+    "gui.tpwithgui.teleport_to_me": "%s을(를) 내게 텔레포트",
+    "gui.tpwithgui.close": "닫기",
+    "gui.tpwithgui.cancel": "취소",
+    "key.tpwithgui.open_gui": "TP With GUI: 텔레포트 GUI 열기"
+}
