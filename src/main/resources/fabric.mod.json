@@ -14,7 +14,7 @@
     "environment": "client",
 
     "entrypoints": {
-        "client": ["com.tpwithgui.TPWithGUI"]
+        "client": ["com.tpwithgui.TpWithGuiClient"]
     },
 
     "mixins": [],
