@@ -40,7 +40,7 @@ public class TeleportScreen extends Screen {
 			if (!player.getUuid().equals(client.player.getUuid())) {
 				String name = player.getName().getString();
 				ButtonWidget button = ButtonWidget
-						.builder(Text.literal(name), btn -> client.setScreen(new TeleportMenuScreen(name, this)))
+						.builder(Text.literal(name), btn -> client.setScreen(new TeleportSubScreen(name, this)))
 						.dimensions(this.width / 2 - 100, 0, 200, BUTTON_HEIGHT).build();
 				// 버튼을 위젯으로 추가하여 자동 클릭 처리되도록 함
 				this.addDrawableChild(button);

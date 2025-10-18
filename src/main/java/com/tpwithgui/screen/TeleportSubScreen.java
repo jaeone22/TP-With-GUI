@@ -5,10 +5,10 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.text.Text;
 
-public class TeleportMenuScreen extends Screen {
+public class TeleportSubScreen extends Screen {
 	private final String playerName;
 
-	public TeleportMenuScreen(String playerName, Screen previousScreen) {
+	public TeleportSubScreen(String playerName, Screen previousScreen) {
 		super(Text.translatable("gui.tpwithgui.teleport_title", playerName));
 		this.playerName = playerName;
 	}

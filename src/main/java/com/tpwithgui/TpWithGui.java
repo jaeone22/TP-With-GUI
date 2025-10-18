@@ -11,7 +11,7 @@ import org.lwjgl.glfw.GLFW;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TpWithGuiClient implements ClientModInitializer {
+public class TpWithGui implements ClientModInitializer {
 	public static final String MOD_ID = "tpwithgui";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
