@@ -21,7 +21,7 @@ public class TeleportSubScreen extends Screen {
 		int midY = this.height / 2;
 		this.addDrawableChild(ButtonWidget.builder(Text.translatable("gui.tpwithgui.teleport_to", playerName), btn -> {
 			if (client.getNetworkHandler() != null) {
-				client.getNetworkHandler().sendChatCommand("/tp " + playerName);
+				client.getNetworkHandler().sendChatCommand("tp " + playerName);
 			}
 			this.close();
 		}).dimensions(this.width / 2 - 100, midY - 30, 200, 20).build());
@@ -30,7 +30,7 @@ public class TeleportSubScreen extends Screen {
 				ButtonWidget.builder(Text.translatable("gui.tpwithgui.teleport_to_me", playerName), btn -> {
 					if (client.getNetworkHandler() != null && client.player != null) {
 						client.getNetworkHandler()
-								.sendChatCommand("/tp " + playerName + " " + client.player.getName().getString());
+								.sendChatCommand("tp " + playerName + " " + client.player.getName().getString());
 					}
 					this.close();
 				}).dimensions(this.width / 2 - 100, midY, 200, 20).build());
