@@ -29,24 +29,20 @@ public class TpWithGui implements ClientModInitializer {
 				KeyBinding.Category.MISC));
 
 		// 클라이언트 명령어 등록: /tpgui
-		ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> {
-			dispatcher.register(ClientCommandManager.literal("tpgui")
-					.executes(context -> {
-						// GUI 열기
-						context.getSource().getClient().setScreen(new TeleportScreen());
-						return 1;
-					}));
-		});
+		ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> dispatcher.register(ClientCommandManager.literal("tpgui")
+                .executes(context -> {
+                    // GUI 열기
+                    context.getSource().getClient().setScreen(new TeleportScreen());
+                    return 1;
+                })));
 
 		// 클라이언트 명령어 등록: /.
-		ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> {
-			dispatcher.register(ClientCommandManager.literal(".")
-					.executes(context -> {
-						// GUI 열기
-						context.getSource().getClient().setScreen(new TeleportScreen());
-						return 1;
-					}));
-		});
+		ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> dispatcher.register(ClientCommandManager.literal(".")
+                .executes(context -> {
+                    // GUI 열기
+                    context.getSource().getClient().setScreen(new TeleportScreen());
+                    return 1;
+                })));
 
 		// 키 입력 감지
 		ClientTickEvents.END_CLIENT_TICK.register(client -> {
