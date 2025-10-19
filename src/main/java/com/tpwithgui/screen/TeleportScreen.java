@@ -130,7 +130,7 @@ public class TeleportScreen extends Screen {
 
 			boolean isVisible = y + BUTTON_HEIGHT > startY + LIST_TOP && y < startY + LIST_TOP + listHeight;
 			button.visible = isVisible;
-			button.active = playerButton.name.equals(selectedPlayer) ? false : isVisible;
+			button.active = !playerButton.name.equals(selectedPlayer) && isVisible;
 
 			y += BUTTON_HEIGHT + BUTTON_SPACING;
 		}
@@ -153,13 +153,12 @@ public class TeleportScreen extends Screen {
 
 		context.drawCenteredTextWithShadow(this.textRenderer, Text.translatable("gui.tpwithgui.online_players"), startX + SPLIT_WIDTH / 2, startY + 15, 0xFFFFFF);
 		context.drawCenteredTextWithShadow(this.textRenderer, Text.translatable("gui.tpwithgui.teleport_menu"), startX + SPLIT_WIDTH + (TOTAL_WIDTH - SPLIT_WIDTH) / 2, startY + 15, 0xFFFFFF);
-		
-		int selectedTextX = menuX;
-		int selectedTextY = startY + TOTAL_HEIGHT / 2 - 80;
+
+        int selectedTextY = startY + TOTAL_HEIGHT / 2 - 80;
 		if (selectedPlayer != null) {
-			context.drawTextWithShadow(this.textRenderer, Text.translatable("gui.tpwithgui.selected_player", selectedPlayer), selectedTextX, selectedTextY, 0xFFFFFF);
+			context.drawTextWithShadow(this.textRenderer, Text.translatable("gui.tpwithgui.selected_player", selectedPlayer), menuX, selectedTextY, 0xFFFFFF);
 		} else {
-			context.drawTextWithShadow(this.textRenderer, Text.translatable("gui.tpwithgui.no_player_selected"), selectedTextX, selectedTextY, 0x808080);
+			context.drawTextWithShadow(this.textRenderer, Text.translatable("gui.tpwithgui.no_player_selected"), menuX, selectedTextY, 0x808080);
 		}
 
 		if (maxScroll > 0) {
